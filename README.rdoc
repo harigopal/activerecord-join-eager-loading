@@ -1,0 +1,21 @@
+== README
+
+This is a test application which demonstrates chained table joins with eager-loading, using ActiveRecord 4.
+
+* Ruby version - 2.0.0+
+
+To see the test in action, do:
+
+    $ bundle install
+    $ rake db:setup # This will seed the database with db/seeds.rb
+    $ bundle exec rails server
+
+Now load up the root page (probably http://localhost:3000) in your browser.
+
+Custom code is in the following files
+
+* app/controllers/application_controller.rb
+* app/views/application/index.html.erb
+* config/routes.rb
+
+That's it! :-)

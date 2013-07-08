@@ -1,0 +1,30 @@
+<p>On my system, using SQLite3 as database, the queries used to load the data below are as follows:</p>
+
+<pre>
+  SELECT DISTINCT "tasks".id FROM "tasks" INNER JOIN "comments" ON "comments"."task_id" = "tasks"."id" INNER JOIN "users" ON "users"."id" = "comments"."user_id" ORDER BY tasks.created_at DESC LIMIT 10
+
+  SELECT "tasks"."id" AS t0_r0, "tasks"."user_id" AS t0_r1, "tasks"."description" AS t0_r2, "tasks"."created_at" AS t0_r3, "tasks"."updated_at" AS t0_r4, "comments"."id" AS t1_r0, "comments"."message" AS t1_r1, "comments"."user_id" AS t1_r2, "comments"."task_id" AS t1_r3, "comments"."created_at" AS t1_r4, "comments"."updated_at" AS t1_r5, "users"."id" AS t2_r0, "users"."name" AS t2_r1, "users"."created_at" AS t2_r2, "users"."updated_at" AS t2_r3 FROM "tasks" INNER JOIN "comments" ON "comments"."task_id" = "tasks"."id" INNER JOIN "users" ON "users"."id" = "comments"."user_id" WHERE "tasks"."id" IN (20, 19, 18, 17, 16, 15, 14, 13, 12, 11) ORDER BY tasks.created_at DESC
+</pre>
+
+<h1>Tasks</h1>
+
+<div>
+  <table border="1">
+    <thead>
+      <th>Description</th>
+      <th>Last Comment</th>
+      <th>Comment Author</th>
+    </thead>
+
+    <tbody>
+    <% @tasks.each do |task| %>
+      <tr>
+        <td><%= task.description %></td>
+        <% last_comment = task.comments.last %>
+        <td><%= last_comment.message %></td>
+        <td><%= last_comment.user.name %></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table>
+</div>
